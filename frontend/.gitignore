@@ -1,0 +1,16 @@
+# Ignore React huge dependency folders
+node_modules/
+build/
+.DS_Store
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore heavy Model files (Too big for GitHub)
+*.h5
+*.keras
+backend/models/
+
+# Ignore system files
+.env

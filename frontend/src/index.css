@@ -1,0 +1,376 @@
+/* src/index.css - THE COMPLETE AND FINAL STYLESHEET */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+:root {
+  --background-color: #1a1a2e; /* Deep Navy Blue */
+  --card-background: #162447; /* Darker Blue */
+  --primary-accent: #1f4068; /* Muted Blue */
+  --secondary-accent: #e43f5a; /* Bright Red/Pink Accent for buttons */
+  --highlight-color: #00ffdd; /* Bright Teal/Cyan for highlights */
+  --text-color: #e0e0e0; /* Light Gray for text */
+  --text-muted: #a0a0a0;
+  --success-color: #00ffdd; /* Teal */
+  --danger-color: #ff4d4d; /* Bright Red */
+  --misleading-color: #f39c12; /* Orange for misleading */
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+/* --- Header --- */
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  border-bottom: 2px solid var(--primary-accent);
+  padding-bottom: 1rem;
+}
+.header a {
+  color: white;
+  text-decoration: none;
+}
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* --- Home Page --- */
+.home-title {
+  text-align: center;
+  color: white;
+}
+.home-subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  margin-top: -1.5rem;
+  margin-bottom: 3rem;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+.service-card {
+  background: var(--card-background);
+  border: 1px solid var(--primary-accent);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 255, 221, 0.1);
+  border-color: var(--highlight-color);
+}
+.service-card .icon {
+  font-size: 3.5rem;
+}
+.service-card h3 {
+  color: white;
+  margin-top: 1rem;
+}
+.service-card p {
+  color: var(--text-muted);
+}
+
+/* --- Universal Detector Page Styles --- */
+.detector-container {
+  background: var(--card-background);
+  border: 1px solid var(--primary-accent);
+  padding: 2.5rem;
+  border-radius: 12px;
+  max-width: 800px;
+  margin: 2rem auto;
+  animation: fadeIn 0.5s ease;
+}
+.detector-container h2 {
+  text-align: center;
+  color: white;
+  margin-top: 0;
+}
+
+/* --- DRAG & DROP ZONE --- */
+.drop-zone {
+  border: 2px dashed var(--primary-accent);
+  border-radius: 12px;
+  padding: 3rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+.drop-zone.drag-over {
+  border-color: var(--highlight-color);
+  background-color: rgba(0, 255, 221, 0.05);
+}
+.drop-zone p {
+  font-size: 1.2rem;
+  margin: 0;
+  color: white;
+}
+.drop-zone small {
+  color: var(--text-muted);
+}
+input[type="file"] {
+  display: none;
+}
+
+/* --- PREVIEW & BUTTONS --- */
+.preview-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #111;
+  border-radius: 8px;
+  text-align: center;
+}
+.preview-container img,
+.preview-container video,
+.preview-container audio {
+  max-width: 100%;
+  max-height: 350px;
+  border-radius: 8px;
+}
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.btn {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background: var(--secondary-accent);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+.btn-clear {
+  background-color: var(--text-muted);
+}
+.btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  background-color: #ff6b81;
+}
+.btn:disabled {
+  background-color: var(--primary-accent);
+  cursor: not-allowed;
+}
+
+/* --- SPINNER & ERROR MESSAGES --- */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+.spinner {
+  border: 4px solid var(--primary-accent);
+  border-top: 4px solid var(--highlight-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+.error-message {
+  color: var(--danger-color);
+  text-align: center;
+  font-weight: 500;
+}
+
+/* --- RESULT CARD (for Image/Video/Audio) --- */
+.result-card {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  animation: fadeIn 0.5s;
+}
+.result-real {
+  background: rgba(0, 255, 221, 0.1);
+  border: 2px solid var(--success-color);
+  color: var(--success-color);
+}
+.result-deepfake {
+  background: rgba(255, 77, 77, 0.1);
+  border: 2px solid var(--danger-color);
+  color: var(--danger-color);
+}
+.result-card h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+/* --- MISINFORMATION & CHATBOT --- */
+.text-input-area {
+  width: 95%;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--primary-accent);
+  background-color: #111;
+  color: var(--text-color);
+  resize: vertical;
+}
+.chat-window {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--primary-accent);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.messages-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  background: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.message-bubble {
+  padding: 0.7rem 1.2rem;
+  border-radius: 18px;
+  max-width: 75%;
+  word-wrap: break-word;
+}
+.bot-message {
+  background: var(--primary-accent);
+  color: var(--text-color);
+  align-self: flex-start;
+}
+.user-message {
+  background: var(--secondary-accent);
+  color: white;
+  align-self: flex-end;
+}
+.chat-input-area {
+  display: flex;
+  padding: 1rem;
+  border-top: 1px solid var(--primary-accent);
+  background-color: var(--card-background);
+}
+.chat-input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 1px solid var(--primary-accent);
+  border-radius: 8px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin-right: 1rem;
+}
+
+/* --- HIGHLIGHTS & TOOLTIPS (FOR MISINFORMATION) --- */
+.highlighted-text-container {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #111;
+  border: 1px solid var(--primary-accent);
+  border-radius: 8px;
+}
+.highlighted-text {
+  line-height: 2;
+  font-size: 1.1rem;
+}
+.highlight {
+  position: relative;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  cursor: help;
+}
+.highlight-fake {
+  text-decoration-color: var(--danger-color);
+}
+.highlight-misleading {
+  text-decoration-color: var(--misleading-color);
+}
+.highlight .tooltip {
+  visibility: hidden;
+  opacity: 0;
+  width: 280px;
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 10;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -140px;
+  transition: opacity 0.3s;
+  font-size: 0.9em;
+  text-decoration: none;
+  border: 1px solid var(--highlight-color);
+}
+.highlight:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* --- THIS IS THE NEWLY ADDED CODE FOR THE OVERALL VERDICT --- */
+.verdict-card {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  animation: fadeIn 0.5s;
+}
+.verdict-card h4 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.verdict-VERIFIED_REAL {
+  background: rgba(0, 255, 221, 0.1);
+  border: 2px solid var(--success-color);
+  color: var(--success-color);
+}
+.verdict-CONTAINS_MISINFORMATION {
+  background: rgba(243, 156, 18, 0.1);
+  border: 2px solid var(--misleading-color);
+  color: var(--misleading-color);
+}
+.verdict-HIGHLY_DECEPTIVE {
+  background: rgba(255, 77, 77, 0.1);
+  border: 2px solid var(--danger-color);
+  color: var(--danger-color);
+}
+/* --- END OF NEW CODE --- */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
